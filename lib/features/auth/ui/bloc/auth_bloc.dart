@@ -1,34 +1,34 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../-core/usecases/auth/registration/registration_data.dart';
-import '../../../../../-core/params/auth/login_params.dart';
+import '../../../../-core/params/login_params.dart';
 
+import '../../domain/entities/registration_data_form.dart';
 import '../../domain/usecases/generate_token.dart';
 import '../../domain/usecases/registration_user.dart';
-import '../../domain/usecases/validate_token.dart';
+// import '../../domain/usecases/validate_token.dart';
 
 import 'bloc.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc(
       {required GenerateToken generateToken,
-      required ValidateToken validateToken,
+      // required ValidateToken validateToken,
       required RegistrationUser registrationUser})
       : _generateToken = generateToken,
-        _validateToken = validateToken,
+        // _validateToken = validateToken,
         _registrationUser = registrationUser,
         super(LoginInitial()) {
-    on<InitialEvent>(initialEvent);
+    on<InitialEventAuth>(initialEvent);
     on<RegisterEvent>(registerEvent);
     on<ForgottenPaswordEvent>(forgottenPaswordEvent);
     on<SignIn>(signIn);
     on<SignUp>(signUp);
   }
   final GenerateToken _generateToken;
-  final ValidateToken _validateToken;
+  // final ValidateToken _validateToken;
   final RegistrationUser _registrationUser;
 
-  void initialEvent(InitialEvent event, Emitter<AuthState> emit) {
+  void initialEvent(InitialEventAuth event, Emitter<AuthState> emit) {
     emit(LoginInitial());
   }
 
@@ -45,18 +45,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     emit(Loading());
     final resultToken = await _generateToken
         .call(LoginParams(user: event.user, password: event.password));
-    final checkingToken =
-        await _validateToken.call(TokenParams(token: resultToken.token));
-    if (checkingToken.isValid) {
-      emit(AuthPassed(token: resultToken.token));
-    } else {
-      emit(AuthDenied());
-    }
+    emit(AuthPassed(token: resultToken.token));
   }
 
   void signUp(SignUp event, Emitter<AuthState> emit) async {
     emit(Loading());
-    final resultRegister = await _registrationUser.call(RegistrationData(
+    final resultRegister = await _registrationUser.call(RegistrationDataForm(
         nombre: event.registrationData.nombre,
         apellido: event.registrationData.apellido,
         correo: event.registrationData.correo,

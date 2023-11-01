@@ -1,5 +1,5 @@
-import '../../../../-core/usecases/auth/registration/registration_data.dart';
-import '../../domain/entities/registration.dart';
+import '../../domain/entities/registration_status.dart';
+import '../../domain/entities/registration_data_form.dart';
 import '../../domain/repositories/registration_repository.dart';
 import '../datasource/registration_datasource.dart';
 
@@ -8,7 +8,7 @@ class RegistrationImpl implements RegistrationRepository {
 
   RegistrationImpl({required this.remoteDataSource});
   @override
-  Future<Registration> createUser(RegistrationData userData) async {
+  Future<RegistrationStatus> createUser(RegistrationDataForm userData) async {
     try {
       return await remoteDataSource.createUser(userData);
     } catch (error) {

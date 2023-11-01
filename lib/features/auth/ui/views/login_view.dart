@@ -24,7 +24,7 @@ class _LoginViewState extends State<LoginView> {
   @override
   void initState() {
     authBloc = context.read<AuthBloc>();
-    authBloc.add(InitialEvent());
+    authBloc.add(InitialEventAuth());
     super.initState();
   }
 
@@ -46,15 +46,6 @@ class _LoginViewState extends State<LoginView> {
               children: <Widget>[
             // ICONO
             SizedBox(width: 150, child: Image.asset(ImagesLogin.iconLogin)),
-            // SizedBox(
-            //     width: 150,
-            //     child: Text("Joffert",
-            //         textAlign: TextAlign.center,
-            //         style: TextStyle(
-            //             color: Colors.blue[900]!,
-            //             fontSize: 36,
-            //             fontWeight: FontWeight.bold))),
-
             Container(
               margin: const EdgeInsets.only(top: 20),
               child: Form(

@@ -1,15 +1,15 @@
- 
-
-import '../../../../-core/usecases/auth/registration/registration_data.dart';
 import '../../../../-core/usecases/usecase.dart';
-import '../entities/registration.dart';
+
+import '../entities/registration_status.dart';
+import '../entities/registration_data_form.dart';
 import '../repositories/registration_repository.dart';
 
-class RegistrationUser extends UseCase<Registration, RegistrationData> {
+class RegistrationUser
+    extends UseCase<RegistrationStatus, RegistrationDataForm> {
   final RegistrationRepository repository;
   RegistrationUser({required this.repository});
   @override
-  Future<Registration> call(RegistrationData params) async {
+  Future<RegistrationStatus> call(RegistrationDataForm params) async {
     return await repository.createUser(params);
   }
 }

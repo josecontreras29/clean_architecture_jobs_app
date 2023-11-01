@@ -1,11 +1,9 @@
-import '../../domain/entities/registration.dart';
+import '../../domain/entities/registration_status.dart';
 
-class RegistrationModel extends Registration {
-  RegistrationModel({required super.created   });
+class RegistrationModel extends RegistrationStatus {
+  RegistrationModel({required super.created});
 
   factory RegistrationModel.fromJson(Map<String, dynamic> json) {
-    return RegistrationModel(
-      created: json["created"],
-    );
+    return RegistrationModel(created: json["created"]);
   }
 }

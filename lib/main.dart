@@ -1,3 +1,5 @@
+import 'package:clean_architecture_jobs_app/features/home/ui/bloc/home_bloc.dart';
+import 'package:clean_architecture_jobs_app/features/home/ui/bloc/home_event.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -7,7 +9,7 @@ import 'features/auth/ui/views/authentication_view.dart';
 import 'injection_container.dart';
 
 Future<void> main() async {
-  await initializeDependencies();
+  await initDependencies();
   runApp(const MyApp());
 }
 
@@ -18,7 +20,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<AuthBloc>(create: (context) => sl()..add(InitialEvent()))
+        BlocProvider<AuthBloc>(
+            create: (context) => sl()..add(InitialEventAuth())),
+        BlocProvider<HomeBloc>(
+            create: (context) => sl()..add(InitialEventHome()))
       ],
       child: MaterialApp(
           debugShowCheckedModeBanner: false,

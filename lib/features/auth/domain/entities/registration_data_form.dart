@@ -1,11 +1,11 @@
-class RegistrationData {
+class RegistrationDataForm {
   final String nombre;
   final String apellido;
   final String correo;
   final int celular;
   final String direccion;
 
-  RegistrationData(
+  RegistrationDataForm(
       {required this.nombre,
       required this.apellido,
       required this.correo,

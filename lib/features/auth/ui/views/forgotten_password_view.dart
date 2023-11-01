@@ -54,7 +54,7 @@ class _ForgottenPasswordViewState extends State<ForgottenPasswordView> {
                   margin: const EdgeInsets.only(top: 20),
                   child: ElevatedButton(
                     onPressed: () async {
-                      context.read<AuthBloc>().add(InitialEvent());
+                      context.read<AuthBloc>().add(InitialEventAuth());
                       await okButton(context, "Email sent");
                     },
                     child: const Row(
@@ -85,7 +85,7 @@ class _ForgottenPasswordViewState extends State<ForgottenPasswordView> {
                               fontWeight: FontWeight.bold),
                           recognizer: TapGestureRecognizer()
                             ..onTap = () =>
-                                context.read<AuthBloc>().add(InitialEvent())),
+                                context.read<AuthBloc>().add(InitialEventAuth())),
                     )
                   ],
                 ),

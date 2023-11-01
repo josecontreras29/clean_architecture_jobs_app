@@ -1,9 +1,8 @@
-
-import '../../../../-core/params/auth/login_params.dart';
-import '../../../../-core/usecases/auth/login/validator_token.dart';
-import '../entities/login.dart';
+import '../../../../-core/params/login_params.dart';
+// import '../entities/verify_token.dart';
+import '../entities/token_auth.dart';
 
 abstract class LoginRepository {
-  Future<Login> generateToken(LoginParams credentials);
-  Future<VerifyToken> validateToken(TokenParams params);
+  Future<TokenAuth> generateToken(LoginParams credentials);
+  // Future<VerifyToken> validateToken(TokenParams params);
 }

@@ -2,8 +2,6 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
-import '../../../../../-core/usecases/response_from_api.dart';
-
 class ClientHttp {
   final client = http.Client();
   static const staticheaders = {
@@ -42,5 +40,15 @@ class ClientHttp {
     } catch (error) {
       throw error.toString();
     }
+  }
+}
+
+class ResponseFromApi {
+  Map<String, dynamic> json;
+  int code;
+  ResponseFromApi({required this.json, required this.code});
+
+  Map<String, dynamic> toJson() {
+    return {"json": json, "code": code};
   }
 }

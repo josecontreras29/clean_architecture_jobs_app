@@ -1,6 +1,6 @@
- import '../../../../-core/usecases/auth/registration/registration_data.dart';
-import '../entities/registration.dart';
+import '../entities/registration_status.dart';
+import '../entities/registration_data_form.dart';
 
 abstract class RegistrationRepository {
-  Future<Registration> createUser(RegistrationData userData);
+  Future<RegistrationStatus> createUser(RegistrationDataForm userData);
 }

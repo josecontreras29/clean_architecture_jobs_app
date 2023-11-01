@@ -1,10 +1,9 @@
-
-import '../../../../-core/usecases/auth/registration/registration_data.dart';
+import '../../domain/entities/registration_data_form.dart';
 import '../models/registration_model.dart';
-import 'source/http.dart';
+import '../../../../-core/datasources/http.dart';
 
 abstract class RegistrationDataSource {
-  Future<RegistrationModel> createUser(RegistrationData registration);
+  Future<RegistrationModel> createUser(RegistrationDataForm registration);
 }
 
 class RegistrationDataSourceImpl implements RegistrationDataSource {
@@ -12,7 +11,8 @@ class RegistrationDataSourceImpl implements RegistrationDataSource {
 
   RegistrationDataSourceImpl({required this.client});
   @override
-  Future<RegistrationModel> createUser(RegistrationData registration) async {
+  Future<RegistrationModel> createUser(
+      RegistrationDataForm registration) async {
     // final response = await client.post(
     //     url: "https://127.0.0.1:3000/api/v1/auth/createUser",
     //     body: {"authorizationToken":authorizationToken,

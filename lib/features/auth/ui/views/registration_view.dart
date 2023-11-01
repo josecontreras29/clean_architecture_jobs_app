@@ -1,10 +1,10 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../-core/usecases/auth/registration/registration_data.dart';
-
+import '../../domain/entities/registration_data_form.dart';
 import '../bloc/bloc.dart';
 import '../reusable_widgets/background_login.dart';
 
@@ -132,7 +132,7 @@ class _RegistrationViewState extends State<RegistrationView> {
               onPressed: () async {
                 if (_formField.currentState!.validate()) {
                   authBloc.add(SignUp(
-                      registrationData: RegistrationData(
+                      registrationData: RegistrationDataForm(
                           nombre: controllerNombre.text,
                           apellido: controllerApellido.text,
                           correo: controllerCorreo.text,
@@ -164,7 +164,7 @@ class _RegistrationViewState extends State<RegistrationView> {
                           color: Colors.blue[700]!,
                           fontWeight: FontWeight.bold),
                       recognizer: TapGestureRecognizer()
-                        ..onTap = () => authBloc.add(InitialEvent())),
+                        ..onTap = () => authBloc.add(InitialEventAuth())),
                 )
               ],
             ),

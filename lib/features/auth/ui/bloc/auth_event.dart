@@ -1,10 +1,10 @@
-import '../../../../-core/usecases/auth/registration/registration_data.dart';
+import '../../domain/entities/registration_data_form.dart';
 
 class AuthEvent {
   AuthEvent();
 }
 
-class InitialEvent extends AuthEvent {}
+class InitialEventAuth extends AuthEvent {}
 
 class SignIn extends AuthEvent {
   final String user;
@@ -16,7 +16,7 @@ class SignIn extends AuthEvent {
 class RegisterEvent extends AuthEvent {}
 
 class SignUp extends AuthEvent {
-  final RegistrationData registrationData;
+  final RegistrationDataForm registrationData;
   SignUp({required this.registrationData});
 }
 

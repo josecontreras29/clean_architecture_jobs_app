@@ -1,3 +1,4 @@
+import 'package:clean_architecture_jobs_app/injection_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -38,6 +39,12 @@ class _AuthenticationViewState extends State<AuthenticationView> {
                   if (state is AuthDenied) {
                     return await okButton(context, "Incorrect credentials");
                   }
+                  if (state is AuthPassed) {
+                    await initHomeDependencies().then((value) => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const HomePage())));
+                  }
                 }, builder: (context, state) {
                   if (state is LoginInitial) {
                     return const LoginView();
@@ -51,8 +58,6 @@ class _AuthenticationViewState extends State<AuthenticationView> {
                             color: Colors.black, strokeWidth: 6));
                   } else if (state is UserRegistered) {
                     return const LoginView();
-                  } else if (state is AuthPassed) {
-                    return const HomeView();
                   } else {
                     return const SizedBox();
                   }
